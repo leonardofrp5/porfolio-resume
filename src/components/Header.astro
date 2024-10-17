@@ -1,0 +1,16 @@
+---
+import Button from '@components/Button.astro';
+import Tag from './Tag.astro';
+
+const menuItems = ['Home', 'About', 'Skills', 'Experiences', 'Porfolio'];
+---
+
+<header class="flex h-16 justify-around items-center w-full py-2 absolute">
+  <Tag />
+  <ul class="flex">
+    {menuItems.map((item: string) => <Button text={item} />)}
+  </ul>
+  <button id="theme-toggle" class="relative">
+    <img class="theme-icon w-5 h-5" src="../../src/assets/moon.svg" alt="Theme icon" />
+  </button>
+</header>
