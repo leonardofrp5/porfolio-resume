@@ -16,45 +16,5 @@ import Header from '@components/Header.astro';
     >
       <Header text="texto del boton" />
     </div>
-
-    <script>
-      // Selección de elementos y rutas de imágenes para cada tema
-      const toggleButton = document.getElementById('theme-toggle') as HTMLImageElement;
-      const htmlElement = document.documentElement;
-
-      // Rutas para modo claro y oscuro
-      const lightModeIcon = '../../src/assets/moon.svg'; // Ícono para modo claro
-      const darkModeIcon = '../../src/assets/sun.svg'; // Ícono para modo oscuro
-
-      // Seleccionar la imagen usando su clase
-      const themeIcon = document.querySelector('img.theme-icon') as HTMLImageElement;
-
-      // Función para actualizar el ícono según el tema
-      function updateIcon(theme: string) {
-        themeIcon.src = theme === 'dark' ? darkModeIcon : lightModeIcon;
-      }
-
-      // Configuración inicial del ícono según el tema actual
-      const savedTheme = localStorage.getItem('theme');
-      const initialTheme =
-        savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-      // Aplicamos el tema inicial
-      if (initialTheme === 'dark') {
-        htmlElement.classList.add('dark'); // Asegura que la clase 'dark' se aplique
-      }
-      updateIcon(initialTheme); // Actualizamos el ícono según el tema
-
-      // Función para alternar tema y actualizar el ícono
-      function toggleTheme() {
-        const isDarkMode = htmlElement.classList.toggle('dark');
-        const newTheme = isDarkMode ? 'dark' : 'light';
-        localStorage.setItem('theme', newTheme);
-        updateIcon(newTheme); // Actualizamos el ícono cuando se alterna el tema
-      }
-
-      // Evento de clic para alternar tema
-      toggleButton.addEventListener('click', toggleTheme);
-    </script>
   </body>
 </html>
