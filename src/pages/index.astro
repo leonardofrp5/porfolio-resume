@@ -1,20 +1,33 @@
 ---
 import Header from '@components/Header.astro';
+// import Information from '@components/Information.astro';
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <script lang="ts">
+      (function () {
+        const storedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (storedTheme) {
+          document.documentElement.setAttribute('data-theme', storedTheme);
+        } else if (prefersDark) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <meta name="generator" content="Portfolio of Leonardo Romero here can see my career like a Frontend" />
+    <title>Developer Leonardo Romero</title>
   </head>
   <body>
     <div
-      class="before:transition-colors before:duration-1000 bg-hero-pattern h-screen relative before:content-[' '] before:absolute before:inset-x-0 before:inset-y-0 before:bg-white/[0.8] dark:before:bg-black/[0.8]"
+      class="before:transition-colors before:duration-1000 bg-hero-pattern bg-cover h-screen relative before:content-[' '] before:absolute before:inset-x-0 before:inset-y-0 before:bg-white/[0.8] dark:before:bg-black/[0.8]"
     >
-      <Header text="texto del boton" />
+      <Header />
+      <!-- <Information /> -->
     </div>
   </body>
 </html>

@@ -1,0 +1,100 @@
+---
+import Tag from './Tag.astro';
+
+// Importamos imágenes directamente como URLs generadas por Vite
+import PhotoProfile from '@assets/photo-profile.png';
+import IconGitHubWhite from '@assets/icon-github-white.png';
+import IconGitHubBlack from '@assets/icon-github-black.png';
+import IconLinkedinWhite from '@assets/icon-linkedin-white.png';
+import IconLinkedinBlack from '@assets/icon-linkedin-black.png';
+import IconXWhite from '@assets/icon-x-white.png';
+import IconXBlack from '@assets/icon-x-black.png';
+
+const socialLinks = [
+  {
+    href: 'https://x.com/leofrp',
+    lightIcon: IconXBlack, // Icono para tema claro
+    darkIcon: IconXWhite, // Icono para tema oscuro
+    alt: 'Twitter Icon'
+  },
+  {
+    href: 'https://github.com/leonardofrp5',
+    lightIcon: IconGitHubBlack,
+    darkIcon: IconGitHubWhite,
+    alt: 'GitHub Icon'
+  },
+  {
+    href: 'https://www.linkedin.com/in/leonardo-fabian-romero-perez-516479168/',
+    lightIcon: IconLinkedinBlack,
+    darkIcon: IconLinkedinWhite,
+    alt: 'LinkedIn Icon'
+  }
+];
+---
+
+<section class="w-full flex justify-around items-center relative">
+  <div>
+    <Tag
+      text="Hello I'm"
+      borderRadius="rounded-tl-full rounded-tr-full rounded-br-full rounded-bl-none"
+      width="w-32"
+      height="h-9"
+      fontSize="sm"
+      fontWeight="semibold"
+    />
+    <h1 class="transition-colors duration-500 text-black text-6xl font-semiBold mt-6 dark:text-white">
+      Leonardo Romero
+    </h1>
+    <h3 class="duration-500 text-black text-2xl font-bold mt-2.5 dark:text-white">Frontend Developer</h3>
+    <ul class="flex mt-10 gap-4">
+      {
+        socialLinks.map(({ href, lightIcon, darkIcon, alt }) => (
+          <li>
+            <a href={href} target="_blank" rel="noopener noreferrer">
+              <img
+                class="theme-icon"
+                src={lightIcon.src}
+                data-light-src={lightIcon.src}
+                data-dark-src={darkIcon.src}
+                alt={alt}
+                width="25"
+                height="25"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <img
+    class="w-80 h-80 object-cover rounded-full border-8 border-white border-opacity-25"
+    src={PhotoProfile.src}
+    alt="Profile photo"
+  />
+</section>
+
+<script lang="ts">
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeIcons = document.querySelectorAll<HTMLImageElement>('img.theme-icon');
+
+    // Función para actualizar los íconos según el tema
+    const updateIcons = theme => {
+      themeIcons.forEach(icon => {
+        const newSrc = theme === 'dark' ? icon.dataset.darkSrc : icon.dataset.lightSrc;
+        if (newSrc) {
+          icon.src = newSrc; // Asigna la URL al atributo src
+        }
+      });
+    };
+
+    // Escuchar el evento global de cambio de tema
+    window.addEventListener('themeChange', event => {
+      const { theme } = event.detail;
+      updateIcons(theme);
+    });
+
+    // Inicializar los íconos según el tema actual
+    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    updateIcons(currentTheme);
+  });
+</script>

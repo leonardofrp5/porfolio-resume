@@ -1,8 +1,8 @@
 ---
-const tagtext = 'RESUME';
+const { text, borderRadius, width, height, fontSize, fontWeight } = Astro.props;
 ---
 
 <span
-  class="transition duration-1000 flex justify-center w-20 h-6 bg-verdigris text-white font-bold text-base rounded-lg"
-  >{tagtext}</span
+  class=`flex items-center transition duration-1000 flex justify-center ${width} ${height} bg-verdigris text-white font-${fontWeight} text-${fontSize} ${borderRadius}`
+  >{text}</span
 >
