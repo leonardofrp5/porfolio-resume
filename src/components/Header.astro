@@ -1,11 +1,10 @@
 ---
-import Button from '@components/Button.astro';
-import IconMoon from '@assets/Icons/moon.astro';
-import IconSun from '@assets/Icons/sun.astro';
+import Button from '@components/Button.astro'
 
-import Tag from './Tag.astro';
+import ThemeIcon from "./ThemeIcon.astro"
+import Tag from './Tag.astro'
 
-const menuItems = ['Home', 'About', 'Skills', 'Experiences', 'Portfolio'];
+const menuItems = ['Home', 'About', 'Skills', 'Experiences', 'Portfolio']
 ---
 
 <header class="flex h-16 justify-around items-center w-full py-2 relative">
@@ -14,9 +13,11 @@ const menuItems = ['Home', 'About', 'Skills', 'Experiences', 'Portfolio'];
     {menuItems.map(item => <Button text={item} />)}
   </div>
   <button id="theme-toggle" class="relative w-6 h-6" aria-label="Toggle Theme">
-    <IconMoon class="icon-moon hidden" />
-    <IconSun class="icon-sun" />
+    <ThemeIcon />
   </button>
 </header>
 
-<script lang="ts"></script>
+<script lang="ts">
+
+
+</script>
