@@ -7,18 +7,6 @@
   </svg>
 </button>
 
-<style>
-  #themeToggle {
-    border: 0;
-    background: none;
-  }
-  .sun { fill: black; }
-  .moon { fill: transparent; }
-
-  :global(.dark) .sun { fill: transparent; }
-  :global(.dark) .moon { fill: white; }
-</style>
-
 <script is:inline>
   const theme = (() => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -31,9 +19,11 @@
   })();
 
   if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
+    document.querySelector('.sun').remove();
+    document.querySelector('.moon').setAttribute('fill', '#fff');
   } else {
-    document.documentElement.classList.add('dark');
+    document.querySelector('.moon').remove();
+    // document.querySelector('.moon').setAttribute('fill', '#fff');
   }
 
   window.localStorage.setItem('theme', theme);
