@@ -6,6 +6,10 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
-  integrations: [tailwind()]
+  integrations: [tailwind()],
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
 });
