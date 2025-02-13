@@ -15,7 +15,7 @@ export default {
         black: '#000000'
       },
       backgroundImage: {
-        'hero-pattern': "url('/src/assets/screen1.jpg')"
+        'hero-pattern': "url('/screen1.jpg')"
       },
       keyframes: {
         fadeIn: {
