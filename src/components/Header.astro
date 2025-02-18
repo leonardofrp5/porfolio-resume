@@ -1,23 +1,44 @@
 ---
-import Button from '@components/Button.astro'
+import Button from '@components/Button.astro';
+import ThemeIcon from "./ThemeIcon.astro";
+import Tag from './Tag.astro';
 
-import ThemeIcon from "./ThemeIcon.astro"
-import Tag from './Tag.astro'
-
-const menuItems = ['Home', 'About', 'Skills', 'Experiences', 'Portfolio']
+const menuItems = ['Home', 'About', 'Skills', 'Experiences', 'Portfolio'];
 ---
 
-<header class="flex h-16 justify-around items-center w-full py-2 relative">
+<header class="flex justify-between items-center w-full px-6 md:px-10 lg:px-20 py-4 relative z-20 bg-stone-300 dark:bg-zinc-800">
   <Tag text="RESUME" borderRadius="rounded-lg" width="w-20" height="h-6" fontSize="base" fontWeight="bold" />
-  <div class="flex">
+
+  <nav class="hidden md:flex space-x-4">
     {menuItems.map(item => <Button text={item} />)}
-  </div>
-  <button id="theme-toggle" class="relative w-6 h-6" aria-label="Toggle Theme">
+  </nav>
+
+  <button id="theme-toggle" class="w-6 h-6" aria-label="Toggle Theme">
     <ThemeIcon />
   </button>
+
+  <button id="mobile-menu-button" class="md:hidden p-2">
+    <svg class="w-6 h-6 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+    </svg>
+  </button>
+
+  <nav id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-stone-300 dark:bg-zinc-800 z-30">
+    <ul class="flex flex-col items-center space-y-2 py-4">
+      {menuItems.map(item => (
+        <li>
+          <Button text={item} />
+        </li>
+      ))}
+    </ul>
+  </nav>
 </header>
 
-<script lang="ts">
+<script defer>
+  const menuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-
+  menuButton.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
 </script>

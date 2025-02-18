@@ -1,6 +1,6 @@
 ---
 import Header from '@components/Header.astro';
-// import Information from '@components/Information.astro';
+import Information from '@components/Information.astro';
 ---
 
 <html lang="en">
@@ -24,10 +24,10 @@ import Header from '@components/Header.astro';
   </head>
   <body>
     <div
-      class="before:transition-colors before:duration-1000 bg-hero-pattern bg-cover h-screen relative before:content-[' '] before:absolute before:inset-x-0 before:inset-y-0 before:bg-white/[0.8] dark:before:bg-black/[0.8]"
+      class="before:transition-colors before:duration-1000 bg-cover h-screen relative before:content-[' '] before:absolute before:inset-x-0 before:inset-y-0 before:bg-stone-300 dark:before:bg-zinc-800"
     >
-      <Header />
-      <!-- <Information /> -->
+       <Header />
+      <Information />
     </div>
   </body>
 </html>
