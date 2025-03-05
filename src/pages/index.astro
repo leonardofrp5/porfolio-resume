@@ -2,6 +2,8 @@
 import Header from '@components/Header.astro';
 import Information from '@components/Information.astro';
 import Experiences from '@components/Experiences.astro';
+import Projects from '@components/Projects.astro';
+import Skills from '@components/Skills.astro';
 ---
 
 <html lang="en">
@@ -26,11 +28,13 @@ import Experiences from '@components/Experiences.astro';
   </head>
   <body>
     <div
-      class="before:transition-colors before:duration-1000 bg-cover h-screen relative before:content-[' '] before:absolute before:inset-x-0 before:inset-y-0 before:bg-stone-300 dark:before:bg-zinc-800"
+      class="before:transition-colors before:duration-1000 bg-cover relative before:content-[' '] before:absolute before:inset-x-0 before:inset-y-0 before:bg-stone-300 dark:before:bg-zinc-800"
     >
        <Header />
       <Information />
       <Experiences />
+      <Projects />
+      <Skills />
     </div>
   </body>
 </html>
