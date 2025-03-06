@@ -1,27 +1,86 @@
 ---
-import Tag from './Tag.astro';
 
-const socialLinks = [
-  { href: 'https://x.com/leofrp', lightIcon: '/icon-x-black.png', darkIcon: '/icon-x-white.png', alt: 'Twitter Icon' },
-  { href: 'https://github.com/leonardofrp5', lightIcon: '/icon-github-black.png', darkIcon: '/icon-github-white.png', alt: 'GitHub Icon' },
-  { href: 'https://www.linkedin.com/in/leonardo-fabian-romero-perez-516479168/', lightIcon: '/icon-linkedin-black.png', darkIcon: '/icon-linkedin-white.png', alt: 'LinkedIn Icon' }
-];
 ---
 
-<section class="w-full min-h-[80vh] flex flex-col-reverse lg:flex-row justify-center items-center gap-8 lg:gap-20 px-6 md:px-10 lg:px-20 relative">
-  <div class="text-center lg:text-left">
-    <Tag text="Hello I'm" borderRadius="rounded-tl-full rounded-tr-full rounded-br-full rounded-bl-none" width="w-32" height="h-9" fontSize="sm" fontWeight="semibold" />
-    <h1 class="transition-colors duration-500 text-black text-4xl md:text-5xl lg:text-6xl font-semibold mt-6 dark:text-white">Leonardo Romero</h1>
-    <p class="duration-500 text-black text-lg/6 text-justify md:text-lg/6 tracking-normal max-w-lg font-normal mt-2.5 dark:text-white">A frontend developer building sleek digital experiences with React & Astro. I turn ideas into fast, user-friendly solutions—always learning, always evolving. For me, coding is passion, precision, and a touch of magic.</p>
-    <ul class="flex justify-center lg:justify-start mt-6 gap-4">
-      {socialLinks.map(({ href, lightIcon, darkIcon, alt }) => (
-        <li>
-          <a href={href} target="_blank" rel="noopener noreferrer">
-            <img class="theme-icon" src={lightIcon} data-light-src={lightIcon} data-dark-src={darkIcon} alt={alt} width="30" height="30" />
-          </a>
-        </li>
-      ))}
-    </ul>
+<section class="relative w-full h-screen flex flex-col justify-center items-start text-left px-10 md:px-20 lg:px-32 overflow-hidden">
+  <div class="absolute inset-0 bg-animated-squares"></div>
+
+  <div class="relative max-w-3xl space-y-8 z-10">
+    <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight leading-tight animate-slide-in">
+      <span class="text-verdigris">Frontend</span>  
+      <span class="bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 text-transparent bg-clip-text">
+        Developer
+      </span>
+    </h1>
+    <div class="w-32 h-1 bg-verdigris mt-3 animate-expand rounded-full shadow-md"></div>
+    <h2 class="text-4xl md:text-6xl font-bold text-black dark:text-white animate-fade-in">
+      Leonardo Romero Perez
+    </h2>
+    <p class="text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl animate-fade-in delay-200">
+      Building high-performance web experiences with React, TypeScript & Astro. Passionate about clean design, scalable architectures, and creating seamless user interactions.
+    </p>
   </div>
-  <img class="w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover rounded-full border-8 border-white border-opacity-25" src='/photo-profile.png' alt="Profile photo" />
+  <div class="absolute inset-0 pointer-events-none">
+    {Array.from({ length: 15 }).map((_, i) => (
+      <div class={`floating-square delay-${i}`}></div>
+    ))}
+  </div>
 </section>
+
+<style>
+.floating-square {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 150, 136, 0.15);
+  border-radius: 8px;
+  animation: float 6s infinite ease-in-out alternate;
+  opacity: 0.4;
+}
+
+.floating-square:nth-child(1) { top: 10%; left: 15%; animation-duration: 7s; }
+.floating-square:nth-child(2) { top: 30%; left: 25%; animation-duration: 9s; }
+.floating-square:nth-child(3) { top: 50%; left: 80%; animation-duration: 6s; }
+.floating-square:nth-child(4) { top: 60%; left: 10%; animation-duration: 10s; }
+.floating-square:nth-child(5) { top: 80%; left: 70%; animation-duration: 12s; }
+.floating-square:nth-child(6) { top: 20%; left: 60%; animation-duration: 8s; }
+.floating-square:nth-child(7) { top: 40%; left: 90%; animation-duration: 11s; }
+.floating-square:nth-child(8) { top: 70%; left: 30%; animation-duration: 9s; }
+.floating-square:nth-child(9) { top: 90%; left: 50%; animation-duration: 7s; }
+.floating-square:nth-child(10) { top: 15%; left: 80%; animation-duration: 14s; }
+.floating-square:nth-child(11) { top: 5%; left: 50%; animation-duration: 12s; }
+.floating-square:nth-child(12) { top: 85%; left: 20%; animation-duration: 8s; }
+.floating-square:nth-child(13) { top: 35%; left: 70%; animation-duration: 6s; }
+.floating-square:nth-child(14) { top: 60%; left: 50%; animation-duration: 13s; }
+.floating-square:nth-child(15) { top: 10%; left: 40%; animation-duration: 10s; }
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translateY(-40px) translateX(25px) rotate(20deg); opacity: 0.5; }
+  100% { transform: translateY(-80px) translateX(-30px) rotate(-20deg); opacity: 0.7; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 1.5s ease-in-out;
+}
+
+@keyframes expand {
+  from { width: 0; }
+  to { width: 8rem; }
+}
+.animate-expand {
+  animation: expand 1s ease-out forwards;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-slide-in {
+  animation: slide-in 1s ease-out;
+}
+</style>
