@@ -10,12 +10,12 @@ const menuItems = ['Experiences', 'Projects', 'Skills', 'Connect'];
   <Tag text="RESUME" borderRadius="rounded-lg" width="w-20" height="h-6" fontSize="base" fontWeight="bold" />
 
   <nav class="hidden md:flex space-x-4">
-    {menuItems.map(item => <Button text={item} />)}
+    <ul class="hidden md:flex space-x-4">
+      {menuItems.map(item => <Button text={item} />)}
+    </ul>
   </nav>
 
-  <button id="theme-toggle" class="w-6 h-6" aria-label="Toggle Theme">
-    <ThemeIcon />
-  </button>
+  <ThemeIcon />
 
   <button id="mobile-menu-button" class="md:hidden p-2">
     <svg class="w-6 h-6 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -26,9 +26,7 @@ const menuItems = ['Experiences', 'Projects', 'Skills', 'Connect'];
   <nav id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-stone-300 dark:bg-zinc-800 z-30">
     <ul class="flex flex-col items-center space-y-2 py-4">
       {menuItems.map(item => (
-        <li>
-          <Button text={item} />
-        </li>
+        <Button text={item} />
       ))}
     </ul>
   </nav>
