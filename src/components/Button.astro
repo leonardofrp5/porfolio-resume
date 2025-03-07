@@ -1,12 +1,11 @@
 ---
 interface Props {
   text: string;
+  id: string;
 }
-const { text } = Astro.props;
+const { text, id } = Astro.props;
 ---
 
-<li
-  class="transition-colors duration-500 flex justify-center items-center font-bold text-lg pt-3 pr-5 pb-3 pl-5 cursor-pointer hover:border-b border-b-black dark:hover:border-b dark:border-b-white text-black dark:text-white"
->
-  {text}
+<li class="transition-colors duration-500 flex justify-center items-center font-bold text-lg pt-3 pr-5 pb-3 pl-5 cursor-pointer hover:border-b border-b-black dark:hover:border-b dark:border-b-white text-black dark:text-white">
+  <a href={`#${id}`} class="block w-full h-full">{text}</a>
 </li>

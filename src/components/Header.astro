@@ -2,32 +2,25 @@
 import Button from '@components/Button.astro';
 import ThemeIcon from "./ThemeIcon.astro";
 import Tag from './Tag.astro';
-
-const menuItems = ['Experiences', 'Projects', 'Skills', 'Connect'];
+import { menuItems } from '@data/index.js';
 ---
 
 <header class="flex justify-between items-center w-full px-6 md:px-10 lg:px-20 py-4 relative z-20">
   <Tag text="RESUME" borderRadius="rounded-lg" width="w-20" height="h-6" fontSize="base" fontWeight="bold" />
-
   <nav class="hidden md:flex space-x-4">
     <ul class="hidden md:flex space-x-4">
-      {menuItems.map(item => <Button text={item} />)}
+      {menuItems.map(({ label, id }) => <Button text={label} id={id} />)}
     </ul>
   </nav>
-
   <ThemeIcon />
-
   <button id="mobile-menu-button" class="md:hidden p-2">
     <svg class="w-6 h-6 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
     </svg>
   </button>
-
   <nav id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-stone-300 dark:bg-zinc-800 z-30">
     <ul class="flex flex-col items-center space-y-2 py-4">
-      {menuItems.map(item => (
-        <Button text={item} />
-      ))}
+      {menuItems.map(({ label, id }) => <Button text={label} id={id} />)}
     </ul>
   </nav>
 </header>
@@ -36,7 +29,33 @@ const menuItems = ['Experiences', 'Projects', 'Skills', 'Connect'];
   const menuButton = document.getElementById("mobile-menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
 
+
   menuButton.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
   });
+
+
+  document.querySelectorAll("a[href^='#']").forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href").substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: "smooth"
+        });
+      }
+
+      mobileMenu.classList.add("hidden");
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
 </script>
+
