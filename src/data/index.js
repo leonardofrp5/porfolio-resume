@@ -44,6 +44,13 @@ export const projects = [
     repo: "https://github.com/leonardofrp5/landing-wwwr",
     demo: "https://wwwr.vercel.app/",
   },
+  {
+    title: "Running Colombia - Carreras",
+    description: "Running Colombia is a web app that fetches race data from WordPress via an API, allowing runners to explore upcoming and past races in Colombia through a fast and responsive Astro-based interface.",
+    image: "/running-col.png",
+    repo: "https://github.com/leonardofrp5/wp-running-colombia",
+    demo: "https://running-colombia.vercel.app/",
+  },
 ];
 
 export const skills = [
